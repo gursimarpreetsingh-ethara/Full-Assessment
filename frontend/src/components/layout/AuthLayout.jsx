@@ -11,7 +11,7 @@ const AuthLayout = ({ children }) => {
         
         <div className="flex items-center gap-2 mb-6 z-10 relative">
           <div className="w-8 h-8 rounded bg-gradient-to-br from-violet-500 to-fuchsia-500 flex items-center justify-center">
-            <div className="w-4 h-4 bg-white rounded-sm"></div>
+            <div className="w-4 h-4 bg-[var(--bg-secondary)] rounded-sm"></div>
           </div>
           <span className="text-2xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-violet-400 to-fuchsia-400">Ethara</span>
         </div>
@@ -21,7 +21,7 @@ const AuthLayout = ({ children }) => {
           <p className="text-gray-400 text-lg">Manage projects, track tasks, and collaborate effectively in a secure enterprise environment.</p>
         </div>
         
-        <div className="mt-8 text-sm text-gray-500">
+        <div className="mt-8 text-sm text-[var(--text-muted)]">
           &copy; {new Date().getFullYear()} Ethara. All rights reserved.
         </div>
       </div>
@@ -31,7 +31,7 @@ const AuthLayout = ({ children }) => {
         <div className="w-full max-w-md">
           <div className="flex items-center gap-3 mb-8 justify-center">
             <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-violet-500 to-fuchsia-500 flex items-center justify-center">
-              <div className="w-6 h-6 bg-white rounded-sm transform rotate-45"></div>
+              <div className="w-6 h-6 bg-[var(--bg-secondary)] rounded-sm transform rotate-45"></div>
             </div>
             <div className="flex flex-col">
               <span className="text-3xl font-bold text-white tracking-tight">Ethara</span>

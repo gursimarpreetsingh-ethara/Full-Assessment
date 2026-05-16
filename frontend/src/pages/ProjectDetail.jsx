@@ -29,7 +29,7 @@ const ProjectDetail = () => {
         <div className="flex items-center gap-2 text-sm font-medium text-[var(--text-secondary)]">
           <span>Projects</span>
           <span>/</span>
-          <span className="text-gray-900">{project.name}</span>
+          <span className="text-white">{project.name}</span>
         </div>
         <h1 className={`text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r ${gradient}`}>
           {project.name}

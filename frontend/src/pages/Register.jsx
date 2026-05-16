@@ -44,32 +44,32 @@ const Register = () => {
     <AuthLayout>
       <div className={hasError ? 'animate-shake' : ''}>
         <div className="mb-8 text-center lg:text-left">
-          <h2 className="text-2xl font-bold text-gray-900 mb-2">Create Account</h2>
-          <p className="text-gray-500 text-sm">Join Team Task Manager to manage your team's work</p>
+          <h2 className="text-2xl font-bold text-white mb-2">Create Account</h2>
+          <p className="text-[var(--text-muted)] text-sm">Join Team Task Manager to manage your team's work</p>
         </div>
         
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="mb-2">
-            <label className="block text-sm font-medium mb-2 text-gray-700">Account Role</label>
+            <label className="block text-sm font-medium mb-2 text-[var(--text-secondary)]">Account Role</label>
             <div className="grid grid-cols-2 gap-3">
               <button
                 type="button"
                 onClick={() => setRole('admin')}
-                className={`py-2 text-sm font-medium rounded-md border transition-all ${role === 'admin' ? 'bg-blue-50 border-blue-600 text-blue-700 ring-1 ring-blue-600' : 'bg-white border-gray-200 text-gray-500 hover:bg-gray-50'}`}
+                className={`py-2 text-sm font-medium rounded-md border transition-all ${role === 'admin' ? 'bg-blue-50 border-blue-600 text-blue-700 ring-1 ring-blue-600' : 'bg-[var(--bg-secondary)] border-[var(--border-color)] text-[var(--text-muted)] hover:bg-[var(--bg-tertiary)]'}`}
               >
                 Administrator
               </button>
               <button
                 type="button"
                 onClick={() => setRole('member')}
-                className={`py-2 text-sm font-medium rounded-md border transition-all ${role === 'member' ? 'bg-blue-50 border-blue-600 text-blue-700 ring-1 ring-blue-600' : 'bg-white border-gray-200 text-gray-500 hover:bg-gray-50'}`}
+                className={`py-2 text-sm font-medium rounded-md border transition-all ${role === 'member' ? 'bg-blue-50 border-blue-600 text-blue-700 ring-1 ring-blue-600' : 'bg-[var(--bg-secondary)] border-[var(--border-color)] text-[var(--text-muted)] hover:bg-[var(--bg-tertiary)]'}`}
               >
                 Team Member
               </button>
             </div>
           </div>
           <div>
-            <label className="block text-sm font-medium mb-1.5 text-gray-700">Full Name</label>
+            <label className="block text-sm font-medium mb-1.5 text-[var(--text-secondary)]">Full Name</label>
             <input
               type="text"
               required
@@ -81,7 +81,7 @@ const Register = () => {
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-1.5 text-gray-700">Email Address</label>
+            <label className="block text-sm font-medium mb-1.5 text-[var(--text-secondary)]">Email Address</label>
             <input
               type="email"
               required
@@ -93,7 +93,7 @@ const Register = () => {
           </div>
           
           <div>
-            <label className="block text-sm font-medium mb-1.5 text-gray-700">Password</label>
+            <label className="block text-sm font-medium mb-1.5 text-[var(--text-secondary)]">Password</label>
             <div className="relative">
               <input
                 type={showPassword ? 'text' : 'password'}
@@ -107,7 +107,7 @@ const Register = () => {
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-[var(--text-muted)]"
               >
                 {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
               </button>
@@ -119,7 +119,7 @@ const Register = () => {
           </Button>
         </form>
         
-        <div className="mt-6 text-center lg:text-left text-sm text-gray-500">
+        <div className="mt-6 text-center lg:text-left text-sm text-[var(--text-muted)]">
           Already have an account?{' '}
           <Link to="/login" className="text-blue-600 hover:text-blue-700 font-medium transition-colors">
             Sign in

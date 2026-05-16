@@ -33,7 +33,7 @@ const KanbanBoard = ({ project }) => {
     return (
       <div className="flex gap-6 h-96">
         {[1,2,3].map(i => (
-          <div key={i} className="flex-1 min-w-[300px] bg-gray-100 animate-pulse rounded-lg" />
+          <div key={i} className="flex-1 min-w-[300px] bg-[var(--bg-tertiary)] animate-pulse rounded-lg" />
         ))}
       </div>
     );
@@ -43,7 +43,7 @@ const KanbanBoard = ({ project }) => {
     <div className="space-y-4">
       {/* Top action bar */}
       <div className="flex items-center justify-between">
-        <p className="text-sm text-gray-500">
+        <p className="text-sm text-[var(--text-muted)]">
           {tasks.length} task{tasks.length !== 1 ? 's' : ''} total
         </p>
         <Button variant="primary" onClick={handleAddTask}>

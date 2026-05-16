@@ -22,7 +22,7 @@ const ProjectCard = ({ project }) => {
         
         <div className="p-6 flex flex-col flex-1">
           <div className="flex justify-between items-start mb-4">
-            <h3 className="text-xl font-bold text-gray-900 group-hover:text-blue-600 transition-colors line-clamp-1">{project.name}</h3>
+            <h3 className="text-xl font-bold text-white group-hover:text-blue-600 transition-colors line-clamp-1">{project.name}</h3>
             <Badge variant={project.role === 'admin' ? 'purple' : 'blue'}>
               {project.role}
             </Badge>

@@ -52,23 +52,23 @@ const TaskCard = ({ task, onEdit, project }) => {
         
         {isAdmin && (
           <div className="opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1">
-            <button onClick={onEdit} className="p-1 hover:bg-gray-100 rounded text-gray-400 hover:text-gray-900">
+            <button onClick={onEdit} className="p-1 hover:bg-[var(--bg-tertiary)] rounded text-[var(--text-muted)] hover:text-white">
               <Edit2 className="w-3.5 h-3.5" />
             </button>
-            <button onClick={() => deleteMutation.mutate()} className="p-1 hover:bg-red-500/20 rounded text-gray-400 hover:text-red-400">
+            <button onClick={() => deleteMutation.mutate()} className="p-1 hover:bg-red-500/20 rounded text-[var(--text-muted)] hover:text-red-400">
               <Trash2 className="w-3.5 h-3.5" />
             </button>
           </div>
         )}
       </div>
 
-      <h4 className="font-semibold mb-1 text-gray-900">{task.title}</h4>
+      <h4 className="font-semibold mb-1 text-white">{task.title}</h4>
       <p className="text-xs text-[var(--text-muted)] line-clamp-2 mb-4 min-h-[32px]">
         {task.description}
       </p>
 
       <div className="flex items-center justify-between border-t border-[var(--border-color)] pt-3">
-        <div className={`flex items-center gap-1.5 text-xs font-medium ${isOverdue ? 'text-red-400' : 'text-gray-400'}`}>
+        <div className={`flex items-center gap-1.5 text-xs font-medium ${isOverdue ? 'text-red-400' : 'text-[var(--text-muted)]'}`}>
           <Calendar className="w-3.5 h-3.5" />
           {task.due_date ? format(new Date(task.due_date), 'MMM d, yyyy') : 'No due date'}
         </div>
@@ -78,7 +78,7 @@ const TaskCard = ({ task, onEdit, project }) => {
             <select
               value={task.status}
               onChange={(e) => statusMutation.mutate(e.target.value)}
-              className="bg-white border border-gray-300 text-xs text-gray-900 rounded p-1 outline-none focus:border-blue-500"
+              className="bg-[var(--bg-tertiary)] border border-[var(--border-color)] text-xs text-white rounded p-1 outline-none focus:border-[var(--accent-purple)]"
             >
               <option value="todo">To Do</option>
               <option value="in_progress">In Progress</option>

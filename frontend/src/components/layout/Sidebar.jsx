@@ -25,7 +25,7 @@ const Sidebar = () => {
       <div className="p-6">
         <div className="flex items-center gap-3 overflow-hidden">
           <div className="w-8 h-8 rounded bg-gradient-to-br from-violet-500 to-fuchsia-500 flex items-center justify-center shadow-glow shrink-0">
-            <div className="w-4 h-4 bg-white rounded-sm transform rotate-45"></div>
+            <div className="w-4 h-4 bg-[var(--bg-secondary)] rounded-sm transform rotate-45"></div>
           </div>
           {!collapsed && (
             <motion.span 

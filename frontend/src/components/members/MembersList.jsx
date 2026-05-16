@@ -49,7 +49,7 @@ const MembersList = ({ project }) => {
           <GlassCard key={member.id} className="p-4 flex items-center gap-4">
             <Avatar name={member.name} size="md" />
             <div className="flex-1 min-w-0">
-              <p className="font-semibold text-gray-900 truncate">{member.name} {member.id === user?.id && '(You)'}</p>
+              <p className="font-semibold text-white truncate">{member.name} {member.id === user?.id && '(You)'}</p>
               <p className="text-xs text-[var(--text-muted)] truncate">{member.email}</p>
             </div>
             <div className="flex flex-col items-end gap-2">
@@ -60,7 +60,7 @@ const MembersList = ({ project }) => {
               {isAdmin && member.id !== user?.id && (
                 <button 
                   onClick={() => removeMutation.mutate(member.id)}
-                  className="text-gray-500 hover:text-red-400 p-1 transition-colors"
+                  className="text-[var(--text-muted)] hover:text-red-400 p-1 transition-colors"
                   title="Remove from project"
                 >
                   <UserMinus className="w-4 h-4" />
