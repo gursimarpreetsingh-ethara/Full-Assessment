@@ -34,7 +34,7 @@ const statusValidation = [
   body('status').notEmpty().isIn(['todo', 'in_progress', 'done']).withMessage('Valid status required.')
 ];
 
-router.post('/', checkProjectRole('member'), taskValidation, validateRequest, createTask);
+router.post('/', checkProjectRole('admin'), taskValidation, validateRequest, createTask);
 router.get('/', checkProjectRole('member'), getTasks);
 router.get('/:taskId', checkProjectRole('member'), getTask);
 
