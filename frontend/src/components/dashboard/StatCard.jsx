@@ -27,17 +27,17 @@ const StatCard = ({ title, value, icon: Icon, colorClass, borderClass }) => {
   }, [value]);
 
   return (
-    <GlassCard className={`border-t-4 ${borderClass}`}>
+    <div className={`glass-panel p-5 border-t-2 ${borderClass}`}>
       <div className="flex items-center justify-between">
         <div>
-          <p className="text-sm font-medium text-gray-500 mb-1">{title}</p>
-          <h3 className="text-3xl font-bold text-gray-900">{count}</h3>
+          <p className="text-sm font-medium text-[var(--text-secondary)] mb-1">{title}</p>
+          <h3 className="text-3xl font-bold text-white">{count}</h3>
         </div>
-        <div className={`p-3 rounded-md bg-gray-50 border border-gray-100 ${colorClass}`}>
+        <div className={`p-3 rounded-lg bg-[var(--bg-secondary)] border border-[var(--border-light)] ${colorClass}`}>
           <Icon className="w-6 h-6" />
         </div>
       </div>
-    </GlassCard>
+    </div>
   );
 };
 

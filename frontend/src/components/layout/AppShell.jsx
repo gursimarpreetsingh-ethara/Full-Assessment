@@ -1,33 +1,23 @@
 import React from 'react';
-import { Outlet, Navigate } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import TopNav from './TopNav';
-import { useAuth } from '../../context/AuthContext';
 
 const AppShell = () => {
-  const { user, loading } = useAuth();
-
-  if (loading) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="w-8 h-8 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
-      </div>
-    );
-  }
-
-  if (!user) {
-    return <Navigate to="/login" replace />;
-  }
-
   return (
-    <div className="flex min-h-screen bg-gray-50 text-gray-900">
+    <div className="min-h-screen bg-[var(--bg-color)] flex overflow-hidden selection:bg-[var(--accent-purple)] selection:text-white">
       <Sidebar />
-      <main className="flex-1 flex flex-col min-w-0">
+      <div className="flex-1 flex flex-col h-screen overflow-hidden relative">
+        <div className="absolute top-[-20%] left-[-10%] w-[50%] h-[50%] rounded-full bg-[var(--accent-purple)] blur-[150px] opacity-10 pointer-events-none"></div>
+        <div className="absolute bottom-[-20%] right-[-10%] w-[50%] h-[50%] rounded-full bg-[var(--accent-cyan)] blur-[150px] opacity-10 pointer-events-none"></div>
+        
         <TopNav />
-        <div className="flex-1 overflow-x-hidden p-8">
-          <Outlet />
-        </div>
-      </main>
+        <main className="flex-1 overflow-x-hidden overflow-y-auto p-8 relative z-10 custom-scrollbar">
+          <div className="max-w-7xl mx-auto">
+            <Outlet />
+          </div>
+        </main>
+      </div>
     </div>
   );
 };

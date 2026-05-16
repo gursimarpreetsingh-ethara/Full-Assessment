@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 @import './animations.css';
 
 @tailwind base;
@@ -6,116 +6,101 @@
 @tailwind utilities;
 
 :root {
-  /* Formal Light Theme */
-  --bg-base: #f8fafc;
-  --bg-surface: #ffffff;
-  --bg-card: #ffffff;
-  --bg-sidebar: #ffffff;
+  --bg-color: #0B0F19; /* Very dark blue/black */
+  --bg-secondary: #111827; /* Dark slate */
+  --bg-tertiary: #1F2937;
   
-  --accent-primary: #2563eb;
-  --accent-primary-hover: #1d4ed8;
-  --accent-secondary: #f1f5f9;
-  --accent-secondary-hover: #e2e8f0;
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
   
-  --accent-purple: #6366f1;
+  --border-color: #1e293b;
+  --border-light: rgba(255, 255, 255, 0.05);
+  
+  --accent-purple: #8b5cf6;
+  --accent-purple-light: rgba(139, 92, 246, 0.15);
+  
   --accent-blue: #3b82f6;
-  --accent-cyan: #0ea5e9;
-  --accent-pink: #ec4899;
-  --accent-green: #10b981;
+  --accent-blue-light: rgba(59, 130, 246, 0.15);
+  
   --accent-amber: #f59e0b;
+  --accent-green: #10b981;
   --accent-red: #ef4444;
-  
-  --text-primary: #0f172a;
-  --text-secondary: #475569;
-  --text-muted: #94a3b8;
-  
-  --border-color: #e2e8f0;
+  --accent-cyan: #06b6d4;
+  --accent-pink: #ec4899;
+
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.4);
+  --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.4), 0 2px 4px -1px rgba(0,0,0,0.2);
+  --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.5), 0 4px 6px -2px rgba(0,0,0,0.3);
+  --shadow-glow: 0 0 15px rgba(139, 92, 246, 0.3);
 }
 
 * {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 }
 
 body {
   font-family: 'Inter', sans-serif;
-  background-color: var(--bg-base);
+  background-color: var(--bg-color);
   color: var(--text-primary);
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-weight: 600;
-  color: var(--text-primary);
-  letter-spacing: -0.01em;
+@layer components {
+  /* Colorful Glassmorphism utilities */
+  .glass-panel {
+    @apply bg-[var(--bg-secondary)] border border-[var(--border-light)] shadow-[var(--shadow-md)] backdrop-blur-xl relative overflow-hidden rounded-xl transition-all duration-300;
+  }
+  
+  .glass-panel::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+    z-index: 1;
+  }
+
+  .glass-input {
+    @apply w-full bg-[var(--bg-tertiary)] border border-[var(--border-color)] text-[var(--text-primary)] rounded-lg px-4 py-2.5 outline-none transition-all duration-300 focus:border-[var(--accent-purple)] focus:ring-2 focus:ring-[var(--accent-purple-light)];
+  }
+
+  .btn-primary {
+    @apply relative overflow-hidden bg-gradient-to-r from-violet-600 to-indigo-600 hover:from-violet-500 hover:to-indigo-500 text-white font-medium py-2.5 px-5 rounded-lg shadow-[0_0_15px_rgba(124,58,237,0.3)] transition-all duration-300 transform hover:-translate-y-0.5 active:translate-y-0 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none border border-violet-500/30;
+  }
+
+  .btn-secondary {
+    @apply bg-[var(--bg-tertiary)] hover:bg-gray-700 text-[var(--text-primary)] font-medium py-2 px-4 rounded-lg transition-colors border border-[var(--border-color)];
+  }
+
+  .btn-danger {
+    @apply bg-red-500/10 hover:bg-red-500/20 text-red-400 font-medium py-2 px-4 rounded-lg transition-colors border border-red-500/20;
+  }
+
+  /* Vibrant Gradient Text */
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-violet-400 via-fuchsia-400 to-cyan-400;
+  }
 }
 
-p, span, div {
-  font-weight: 400;
-}
-
-a {
-  color: var(--accent-primary);
-  text-decoration: none;
-}
-
-a:hover {
-  text-decoration: underline;
-}
-
-button, input, select, textarea {
-  font-family: inherit;
-}
-
-/* Custom Scrollbar */
+/* Custom Scrollbar for dark theme */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--bg-surface);
+  background: var(--bg-color);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
+  background: var(--bg-tertiary);
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
-}
-
-/* Base Card utility */
-.glass-panel {
-  background: var(--bg-card);
-  border: 1px solid var(--border-color);
-  border-radius: 8px;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.05), 0 1px 2px -1px rgba(0, 0, 0, 0.05);
-}
-
-/* Form Inputs */
-.glass-input {
-  width: 100%;
-  background: #ffffff;
-  border: 1px solid #cbd5e1;
-  color: var(--text-primary);
-  border-radius: 6px;
-  padding: 0.625rem 0.875rem;
-  font-size: 0.875rem;
-  transition: all 0.2s ease;
-  outline: none;
-  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.02);
-}
-
-.glass-input:focus {
-  border-color: var(--accent-primary);
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
-}
-
-.glass-input::placeholder {
-  color: var(--text-muted);
+  background: var(--border-color);
 }

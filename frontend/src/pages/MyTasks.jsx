@@ -80,7 +80,7 @@ const MyTasks = () => {
 
   return (
     <div className="space-y-6 animate-[fadeIn_0.5s_ease-out]">
-      <h1 className="text-3xl font-bold">My Tasks</h1>
+      <h1 className="text-3xl font-bold text-gradient">My Tasks</h1>
 
       <div className="w-full max-w-lg">
         <SegmentedControl 
@@ -104,21 +104,21 @@ const MyTasks = () => {
               <GlassCard key={task.id} className="p-4 flex flex-col md:flex-row md:items-center justify-between gap-4">
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center gap-2 mb-1.5">
-                    <span className="text-xs text-blue-700 font-medium px-2 py-0.5 bg-blue-50 border border-blue-200 rounded">
+                    <span className="text-xs text-[var(--accent-cyan)] font-medium px-2 py-0.5 bg-[var(--accent-cyan)]/10 border border-[var(--accent-cyan)]/20 rounded">
                       {task.projectName}
                     </span>
                     <Badge variant={priorityColors[task.priority]}>{task.priority}</Badge>
                     {task.status === 'done' && (
-                      <span className="flex items-center gap-1 text-xs text-emerald-600 font-medium">
+                      <span className="flex items-center gap-1 text-xs text-[var(--accent-green)] font-medium">
                         <CheckCircle className="w-3.5 h-3.5" /> Done
                       </span>
                     )}
                   </div>
-                  <h4 className={`font-semibold ${task.status === 'done' ? 'text-gray-400 line-through' : 'text-gray-900'} truncate`}>{task.title}</h4>
+                  <h4 className={`font-semibold ${task.status === 'done' ? 'text-[var(--text-muted)] line-through' : 'text-white'} truncate`}>{task.title}</h4>
                 </div>
                 
                 <div className="flex items-center gap-6">
-                  <div className={`flex items-center gap-1.5 text-sm font-medium ${isOverdue ? 'text-red-500' : 'text-gray-400'}`}>
+                  <div className={`flex items-center gap-1.5 text-sm font-medium ${isOverdue ? 'text-red-400' : 'text-[var(--text-muted)]'}`}>
                     <Calendar className="w-4 h-4" />
                     {task.due_date ? format(new Date(task.due_date), 'MMM d, yyyy') : 'No due date'}
                   </div>
@@ -127,9 +127,9 @@ const MyTasks = () => {
             );
           })
         ) : (
-          <div className="py-20 text-center text-gray-400 border border-dashed border-gray-200 rounded-lg">
-            <CheckCircle className="w-12 h-12 mx-auto mb-3 opacity-30" />
-            <p className="text-base font-medium text-gray-500">No tasks found</p>
+          <div className="py-20 text-center text-[var(--text-muted)] border border-dashed border-[var(--border-color)] rounded-lg">
+            <CheckCircle className="w-12 h-12 mx-auto mb-3 opacity-30 text-[var(--accent-cyan)]" />
+            <p className="text-base font-medium text-[var(--text-secondary)]">No tasks found</p>
             <p className="text-sm mt-1">You're all caught up!</p>
           </div>
         )}

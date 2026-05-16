@@ -49,6 +49,18 @@ export const getDashboardStats = async (req, res) => {
       GROUP BY p.id, p.name
     `, [userId]);
 
+    // 5. Tasks per user (across projects the user has access to)
+    const tasksPerUserResult = await query(`
+      SELECT u.id, u.name, COUNT(t.id) as task_count
+      FROM users u
+      JOIN tasks t ON u.id = t.assigned_to
+      JOIN projects p ON t.project_id = p.id
+      JOIN project_members pm ON p.id = pm.project_id
+      WHERE pm.user_id = $1
+      GROUP BY u.id, u.name
+      ORDER BY task_count DESC
+    `, [userId]);
+
     res.json({
       totalTasks,
       statusCounts,
@@ -58,6 +70,11 @@ export const getDashboardStats = async (req, res) => {
         name: row.name,
         totalTasks: parseInt(row.total_tasks) || 0,
         completedTasks: parseInt(row.completed_tasks) || 0
+      })),
+      tasksPerUser: tasksPerUserResult.rows.map(row => ({
+        id: row.id,
+        name: row.name,
+        taskCount: parseInt(row.task_count) || 0
       }))
     });
 
