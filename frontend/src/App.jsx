@@ -36,7 +36,7 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/projects" element={<Projects />} />
         <Route path="/projects/:id" element={<ProjectDetail />} />
-        <Route path="/my-tasks" element={<MyTasks />} />
+        <Route path="/tasks" element={<MyTasks />} />
         <Route path="/team" element={<Team />} />
         <Route path="/settings" element={<Settings />} />
       </Route>
