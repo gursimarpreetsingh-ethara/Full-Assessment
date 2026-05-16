@@ -11,25 +11,27 @@ import Badge from '../components/ui/Badge';
 import Skeleton from '../components/ui/Skeleton';
 
 const MyTasks = () => {
-  const { user } = useAuth();
+  const { user, loading: authLoading } = useAuth();
   const [filter, setFilter] = useState('all');
 
   // Fetch all projects the user belongs to
-  const { data: projects = [], isLoading: loadingProjects } = useQuery({
+  const { data: projects = [], isLoading: loadingProjects, isError: projectError } = useQuery({
     queryKey: ['projects'],
     queryFn: getProjects,
     staleTime: 30000,
+    enabled: !!user,
   });
 
+  const tasksEnabled = projects.length > 0 && !!user;
+
   // Fetch tasks for ALL projects in a single parallel call — much faster
-  const { data: allTasks = [], isLoading: loadingTasks } = useQuery({
+  const { data: allTasks = [], isLoading: loadingTasks, isError: tasksError } = useQuery({
     queryKey: ['myTasks', projects.map(p => p.id).join(',')],
     queryFn: async () => {
-      if (projects.length === 0) return [];
       const results = await Promise.all(
         projects.map(p =>
           getTasks(p.id).then(tasks =>
-            tasks
+            (tasks || [])
               .filter(t => t.assigned_to === user?.id || String(t.assigned_to) === String(user?.id))
               .map(t => ({ ...t, projectName: p.name }))
           )
@@ -37,11 +39,12 @@ const MyTasks = () => {
       );
       return results.flat();
     },
-    enabled: projects.length > 0 && !!user,
+    enabled: tasksEnabled,
     staleTime: 15000,
   });
 
-  const isLoading = loadingProjects || (projects.length > 0 && loadingTasks);
+  const isLoading = authLoading || loadingProjects || (tasksEnabled && loadingTasks);
+  const isError = projectError || tasksError;
 
   if (isLoading) {
     return (
@@ -52,6 +55,14 @@ const MyTasks = () => {
           {[...Array(5)].map((_, i) => <Skeleton key={i} className="h-24" />)}
         </div>
       </div>
+    );
+  }
+
+  if (isError) {
+    return (
+      <GlassCard className="text-center py-12 border-red-500/50">
+        <p className="text-red-400">Failed to load your tasks. Please try again later.</p>
+      </GlassCard>
     );
   }
 
